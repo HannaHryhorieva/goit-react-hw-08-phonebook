@@ -1,12 +1,12 @@
 import './App.css';
 import { useEffect, Suspense, lazy } from 'react';
 import { useDispatch } from 'react-redux';
-import { Switch } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import AppBar from './components/AppBar';
-// import Container from './components/Container';
+
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
-// import { authSelectors } from './redux/Login/auth-selectors';
+
 import operations from './redux/login/auth-operations';
 
 const HomeView = lazy(() => import('./views/HomeView'));
@@ -40,28 +40,10 @@ export default function App() {
             <Conacts />
           </PrivateRoute>
         </Suspense>
+        <Route>
+          <HomeView />
+        </Route>
       </Switch>
     </div>
   );
 }
-
-// export default function App() {
-//   const dispatch = useDispatch();
-//   const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
-
-//   useEffect(() => {
-//     dispatch(authOperations.fetchCurrentUser());
-//   }, [dispatch]);
-
-//   return (
-//     <Container>
-//       {isFetchingCurrentUser ? (
-//         <h1>Показываем React Skeleton</h1>
-//       ) : (
-//         <>
-
-//         </>
-//       )}
-//     </Container>
-//   );
-// }
